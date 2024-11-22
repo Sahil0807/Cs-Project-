@@ -6,10 +6,10 @@ import mysql.connector
 app = Flask(__name__)
 
 db_config = {
-    'host': os.getenv('DB_HOST', 'localhost'),
-    'user': os.getenv('DB_USER', 'root'),
-    'password': os.getenv('DB_PASSWORD', 'Arnav@12'),
-    'database': os.getenv('DB_NAME', 'RegistrationSystem')
+    'host':'localhost',
+    'user':'root',
+    'password':'Arnav@12',
+    'database':'RegistrationSystem'
 }
 
 def get_db_connection():
@@ -52,15 +52,12 @@ def index():
     cursor.close()
     conn.close()
     return render_template('index.html', events=events)
-
+    
 @app.route('/create', methods=['POST'])
 def create():
     event_name = request.form['event_name']
     event_date = request.form['event_date']
     event_location = request.form['event_location']
-
-    if not validate_date(event_date):
-        return "Invalid date format. Use YYYY-MM-DD.", 400
 
     conn = get_db_connection()
     cursor = conn.cursor()
@@ -80,9 +77,6 @@ def register():
     participant_email = request.form['participant_email']
     participant_phone = request.form['participant_phone']
 
-    if not validate_email(participant_email):
-        return "Invalid email address.", 400
-
     conn = get_db_connection()
     cursor = conn.cursor()
     cursor.execute('''
@@ -100,11 +94,9 @@ def view_event_participants(event_id):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
 
-    # Fetch event details
     cursor.execute('SELECT * FROM events WHERE id = %s', (event_id,))
     event = cursor.fetchone()
 
-    # Fetch participants for the event
     cursor.execute('SELECT * FROM participants WHERE event_id = %s', (event_id,))
     participants = cursor.fetchall()
 
@@ -113,17 +105,6 @@ def view_event_participants(event_id):
 
     return render_template('event_details.html', event=event, participants=participants)
 
-def validate_date(date_text):
-    """Validate date format."""
-    try:
-        datetime.strptime(date_text, '%Y-%m-%d')
-        return True
-    except ValueError:
-        return False
-
-def validate_email(email):
-    """Validate email format."""
-    return '@' in email and '.' in email
 
 if __name__ == '__main__':
     init_database()
