@@ -1,9 +1,7 @@
-import flask
-from flask import Flask, render_template, request, redirect
-from datetime import datetime
-import mysql.connector
 import os
-from datetime import date
+from datetime import datetime, date
+from flask import Flask, render_template, request, redirect
+import mysql.connector
 
 app = Flask(__name__)
 
@@ -15,17 +13,15 @@ db_config = {
     'database': os.getenv('DB_NAME', 'RegistrationSystem')
 }
 
-# Function to establish a database connection
 def get_db_connection():
-    conn = mysql.connector.connect(**db_config)
-    return conn
+    """Establish a database connection."""
+    return mysql.connector.connect(**db_config)
 
-# Initialize database tables
 def init_database():
+    """Initialize database tables."""
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    # Create events table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS events (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -35,7 +31,6 @@ def init_database():
     )
     ''')
 
-    # Create participants table
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS participants (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,15 +50,10 @@ def init_database():
 def index():
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-
-    # Fetch only future events (events with date later than today)
     cursor.execute('SELECT * FROM events WHERE event_date >= %s ORDER BY event_date ASC', (date.today(),))
     events = cursor.fetchall()
-
-
     cursor.close()
     conn.close()
-
     return render_template('index.html', events=events)
 
 @app.route('/create', methods=['POST'])
@@ -72,22 +62,18 @@ def create():
     event_date = request.form['event_date']
     event_location = request.form['event_location']
 
-    # Validate event date
     if not validate_date(event_date):
         return "Invalid date format. Use YYYY-MM-DD.", 400
 
     conn = get_db_connection()
     cursor = conn.cursor()
-
     cursor.execute('''
     INSERT INTO events (event_name, event_date, event_location) 
     VALUES (%s, %s, %s)
     ''', (event_name, event_date, event_location))
-
     conn.commit()
     cursor.close()
     conn.close()
-
     return redirect("/")
 
 @app.route('/register', methods=['POST'])
@@ -97,38 +83,33 @@ def register():
     participant_email = request.form['participant_email']
     participant_phone = request.form['participant_phone']
 
-    # Validate email format
     if not validate_email(participant_email):
         return "Invalid email address.", 400
 
     conn = get_db_connection()
     cursor = conn.cursor()
-
-    # Insert participant registration
     cursor.execute('''
     INSERT INTO participants 
     (event_id, participant_name, participant_email, participant_phone) 
     VALUES (%s, %s, %s, %s)
     ''', (event_id, participant_name, participant_email, participant_phone))
-
     conn.commit()
     cursor.close()
     conn.close()
-
     return redirect("/")
 
-# Helper function to validate date format
 def validate_date(date_text):
+    """Validate date format."""
     try:
         datetime.strptime(date_text, '%Y-%m-%d')
         return True
     except ValueError:
         return False
 
-# Helper function to validate email format
 def validate_email(email):
+    """Validate email format."""
     return '@' in email and '.' in email
 
 if __name__ == '__main__':
-    init_database()  # Initialize database tables
+    init_database()
     app.run(debug=True)

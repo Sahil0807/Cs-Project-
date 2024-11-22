@@ -20,39 +20,17 @@
                 <form action="{{ url_for('create') }}" method="post" class="space-y-6">
                     <div>
                         <label class="block text-gray-700 font-semibold mb-2">Event Name</label>
-                        <input 
-                            type="text" 
-                            name="event_name" 
-                            required 
-                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="Confluence'24"
-                        >
+                        <input type="text" name="event_name" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="Confluence'24">
                     </div>
                     <div>
                         <label class="block text-gray-700 font-semibold mb-2">Event Date</label>
-                        <input 
-                            type="date" 
-                            name="event_date" 
-                            required 
-                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                        >
+                        <input type="date" name="event_date" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                     </div>
                     <div>
                         <label class="block text-gray-700 font-semibold mb-2">Event Location</label>
-                        <input 
-                            type="text" 
-                            name="event_location" 
-                            required 
-                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="AISMV"
-                        >
+                        <input type="text" name="event_location" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="AISMV">
                     </div>
-                    <button 
-                        type="submit" 
-                        class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-bold text-lg"
-                    >
-                        Create Event
-                    </button>
+                    <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 font-bold text-lg">Create Event</button>
                 </form>
             </div>
 
@@ -62,11 +40,7 @@
                 <form action="{{ url_for('register') }}" method="post" class="space-y-6">
                     <div>
                         <label class="block text-gray-700 font-semibold mb-2">Select Event</label>
-                        <select 
-                            name="event_id" 
-                            required 
-                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                        >
+                        <select name="event_id" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
                             <option value="">Choose an Event</option>
                             {% for event in events %}
                             <option value="{{ event['id'] }}">{{ event['event_name'] }} - {{ event['event_date'] }}</option>
@@ -75,39 +49,17 @@
                     </div>
                     <div>
                         <label class="block text-gray-700 font-semibold mb-2">Full Name</label>
-                        <input 
-                            type="text" 
-                            name="participant_name" 
-                            required 
-                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="Arnav Goyal"
-                        >
+                        <input type="text" name="participant_name" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="Arnav Goyal">
                     </div>
                     <div>
                         <label class="block text-gray-700 font-semibold mb-2">Email</label>
-                        <input 
-                            type="email" 
-                            name="participant_email" 
-                            required 
-                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="arnav@example.com"
-                        >
+                        <input type="email" name="participant_email" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="arnav@example.com">
                     </div>
                     <div>
                         <label class="block text-gray-700 font-semibold mb-2">Phone Number</label>
-                        <input 
-                            type="tel" 
-                            name="participant_phone" 
-                            required 
-                            class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="+91 1234567890"
-                        >
+                        <input type="tel" name="participant_phone" required class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition" placeholder="+91 1234567890">
                     </div>
-                    <button 
-                        type="submit" 
-                        class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-bold text-lg">
-                        Register
-                    </button>
+                    <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-bold text-lg">Register</button>
                 </form>
             </div>
         </div>
