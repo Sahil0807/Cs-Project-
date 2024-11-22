@@ -105,7 +105,8 @@ def view_event_participants(event_id):
 
     return render_template('event_details.html', event=event, participants=participants)
 
-
 if __name__ == '__main__':
     init_database()
     app.run(debug=True)
+    
+#bruhdadadadadada
