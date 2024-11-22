@@ -69,7 +69,7 @@
                         >
                             <option value="">Choose an Event</option>
                             {% for event in events %}
-                            <option value="{{ event['id'] }}">{{ event['event_name'] }} - {{ event['event_date'] }}</option>
+                            <option value="{{ event[0] }}">{{ event[1] }} - {{ event[2] }}</option>
                             {% endfor %}
                         </select>
                     </div>
