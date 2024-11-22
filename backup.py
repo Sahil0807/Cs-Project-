@@ -5,6 +5,7 @@ import mysql.connector
 
 app = Flask(__name__)
 
+# Database configuration using environment variables with fallbacks
 db_config = {
     'host': os.getenv('DB_HOST', 'localhost'),
     'user': os.getenv('DB_USER', 'root'),
@@ -13,15 +14,17 @@ db_config = {
 }
 
 def get_db_connection():
+    """Establish a database connection."""
     return mysql.connector.connect(**db_config)
 
 def init_database():
+    """Initialize database tables."""
     conn = get_db_connection()
     cursor = conn.cursor()
 
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS events (
-        id INT PRIMARY KEY,
+        id INT AUTO_INCREMENT PRIMARY KEY,
         event_name VARCHAR(255) NOT NULL,
         event_date DATE NOT NULL,
         event_location VARCHAR(255) NOT NULL

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-50 via-blue-100 to-purple-100 text-gray-800 min-h-screen">
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-6 py-12 max-w-5xl">
+        <!-- Event Details Card -->
+        <div class="bg-white shadow-2xl rounded-xl p-8 mb-12 border-t-8 border-blue-500 hover:shadow-lg transition">
+            <h1 class="text-4xl font-extrabold text-blue-600 mb-4">{{ event['event_name'] }}</h1>
+            <div class="text-lg text-gray-600 mb-6">
+                <p class="flex items-center">
+                    <strong class="font-semibold">Date: </strong> {{ event['event_date'] }}
+                </p>
+                <p class="flex items-center">
+                    <strong class="font-semibold">Location: </strong> {{ event['event_location'] }}
+                </p>
+            </div>
+            <p class="text-gray-700 leading-relaxed">
+                Join us for this amazing event! Explore engaging activities, network with like-minded individuals, and have an unforgettable experience.
+            </p>
+        </div>
+
+        <!-- Participants Section -->
+        <div class="bg-white shadow-2xl rounded-xl p-8 border-t-8 border-purple-500">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">Participants</h2>
+            {% if participants %}
+            <ul class="divide-y divide-gray-200">
+                {% for participant in participants %}
+                <li class="py-4 flex items-center justify-between bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg shadow-sm hover:shadow-md transition p-4">
+                    <div>
+                        <p class="text-lg font-semibold text-gray-800">{{ participant['participant_name'] }}</p>
+                        <p class="text-sm text-gray-600">{{ participant['participant_email'] }}</p>
+                    </div>
+                    <div class="text-gray-500 text-sm">{{ participant['participant_phone'] }}</div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="text-gray-600 text-center">No participants have registered for this event yet.</p>
+            {% endif %}
+        </div>
+        <!-- Back Button -->
+        <div class="mt-12 text-center">
+            <a href="/" class="inline-block bg-blue-600 text-white py-3 px-6 rounded-lg shadow hover:bg-blue-700 transition">
+                Back to Events
+            </a>
+        </div>
+    </div>
+
+    <marquee class="bg-yellow-300 mb-2 border-y-2 border-black text-black py-2">
+        <span>2024 Event Management System - A Computer Science Investigatory Project by Arnav Goyal, Sahil Singhal and Tanmay Srivastav | Manage your events effortlessly! | Designed with ❤️</span>
+    </marquee>
+</body>
+</html>
