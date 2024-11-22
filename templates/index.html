@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto py-8">
+        <h1 class="text-4xl font-bold mb-4">Event Management System</h1>
+
+        <!-- Create Event Section -->
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md"></div>
+            <h2 class="text-2xl font-bold mb-4">Create Event</h2>
+            <form action="{{ url_for('create') }}" method="post"></form>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="event_name">Event Name</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="event_name" name="event_name" type="text" placeholder="Enter event name" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="event_date">Event Date</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="event_date" name="event_date" type="date" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-bold mb-2" for="event_location">Event Location</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="event_location" name="event_location" type="text" placeholder="Enter event location" required>
+                </div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Create Event</button>
+            </form>
+        </div>
+
+        <!-- Event List Section -->
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <h2 class="text-2xl font-bold mb-4">Upcoming Events</h2>
+            <table class="table-auto w-full">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="px-4 py-2">Event Name</th>
+                        <th class="px-4 py-2">Event Date</th>
+                        <th class="px-4 py-2">Event Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for event in events %}
+                    <tr>
+                        <td class="border px-4 py-2">{{ event[1] }}</td>
+                        <td class="border px-4 py-2">{{ event[2] }}</td>
+                        <td class="border px-4 py-2">{{ event[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Event Registration Section -->
+        <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-4">Register for an Event</h2>
+            <form>
+                <div class="mb-4">
+                    <label for="event-select" class="block font-medium text-gray-700">Event</label>
+                    <select id="event-select" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        <option value="">Select an event</option>
+                        <option value="1">Event 1</option>
+                        <option value="2">Event 2</option>
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <label for="participant-name" class="block font-medium text-gray-700">Name</label>
+                    <input type="text" id="participant-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Enter your name">
+                </div>
+                <div class="mb-4">
+                    <label for="participant-email" class="block font-medium text-gray-700">Email</label>
+                    <input type="email" id="participant-email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Enter your email">
+                </div>
+                <div class="mb-4">
+                    <label for="participant-phone" class="block font-medium text-gray-700">Phone</label>
+                    <input type="tel" id="participant-phone" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Enter your phone number">
+                </div>
+                <button type="submit" class="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
