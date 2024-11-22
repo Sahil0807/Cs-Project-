@@ -6,7 +6,6 @@
     <title>Event Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom animation for subtle professional effects */
         .fade-in {
             animation: fadeIn 0.5s ease-in-out;
         }
@@ -22,16 +21,16 @@
 </head>
 <body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col">
 
-    <!-- Main Content -->
+
     <main class="container mx-auto px-6 py-12 fade-in">
-        <!-- Introduction -->
+
         <section class="text-center mb-12">
             <h2 class="text-4xl font-extrabold text-gray-800 mb-4">Welcome to the Event Management System</h2>
             <p class="text-lg text-gray-600">Effortlessly manage and explore events with ease.</p>
         </section>
 
         <div class="grid md:grid-cols-2 gap-12">
-            <!-- Event Creation Section -->
+
             <div class="bg-white shadow-lg rounded-lg p-8 transition hover:shadow-xl duration-300">
                 <h3 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-4">Create New Event</h3>
                 <form action="{{ url_for('create') }}" method="post" class="space-y-6">
@@ -51,7 +50,7 @@
                 </form>
             </div>
 
-            <!-- Event Registration Section -->
+
             <div class="bg-white shadow-lg rounded-lg p-8 transition hover:shadow-xl duration-300">
                 <h3 class="text-2xl font-bold mb-6 text-gray-800 border-b pb-4">Register for Event</h3>
                 <form action="{{ url_for('register') }}" method="post" class="space-y-6">
@@ -81,7 +80,7 @@
             </div>
         </div>
 
-        <!-- Upcoming Events -->
+
         <section class="mt-16">
             <h3 class="text-2xl font-bold mb-6 text-gray-800 text-center border-b pb-4">Upcoming Events</h3>
             <div class="grid gap-6 md:grid-cols-3">
@@ -97,7 +96,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
+
     <marquee class="bg-yellow-300 mb-2 border-y-2 border-black text-black py-2">
         <span>2024 Event Management System - A Computer Science Investigatory Project by Arnav Goyal, Sahil Singhal and Tanmay Srivastav | Manage your events effortlessly! | Designed with ❤️</span>
     </marquee>

@@ -109,4 +109,3 @@ if __name__ == '__main__':
     init_database()
     app.run(debug=True)
     
-#bruhdadadadadada
