@@ -60,6 +60,7 @@ def index():
     cursor.execute('SELECT * FROM events WHERE event_date >= %s ORDER BY event_date ASC', (date.today(),))
     events = cursor.fetchall()
 
+
     cursor.close()
     conn.close()
 

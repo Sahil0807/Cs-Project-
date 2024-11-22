@@ -25,7 +25,7 @@
                             name="event_name" 
                             required 
                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="Tech Conference 2024"
+                            placeholder="Confluence'24"
                         >
                     </div>
                     <div>
@@ -44,7 +44,7 @@
                             name="event_location" 
                             required 
                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="San Francisco, CA"
+                            placeholder="AISMV"
                         >
                     </div>
                     <button 
@@ -80,7 +80,7 @@
                             name="participant_name" 
                             required 
                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="John Doe"
+                            placeholder="Arnav Goyal"
                         >
                     </div>
                     <div>
@@ -90,7 +90,7 @@
                             name="participant_email" 
                             required 
                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="john@example.com"
+                            placeholder="arnav@example.com"
                         >
                     </div>
                     <div>
@@ -100,13 +100,12 @@
                             name="participant_phone" 
                             required 
                             class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                            placeholder="+1 (123) 456-7890"
+                            placeholder="+91 1234567890"
                         >
                     </div>
                     <button 
                         type="submit" 
-                        class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-bold text-lg"
-                    >
+                        class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-bold text-lg">
                         Register
                     </button>
                 </form>
@@ -128,9 +127,9 @@
                     <tbody>
                         {% for event in events %}
                         <tr class="border-b hover:bg-gray-50 transition">
-                            <td class="px-6 py-4">{{ event[1] }}</td>
-                            <td class="px-6 py-4">{{ event[2] }}</td>
-                            <td class="px-6 py-4">{{ event[3] }}</td>
+                            <td class="px-6 py-4">{{ event['event_name'] }}</td>
+                            <td class="px-6 py-4">{{ event['event_date'] }}</td>
+                            <td class="px-6 py-4">{{ event['event_location'] }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
